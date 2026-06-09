@@ -1,0 +1,59 @@
+file = solar_system_accurate.json
+threshold = 5 degrees
+method = Beeman
+Console output:
+    --- Orbits main ---
+
+    Input a command, or type 'help' for help with usage and to list available commands: main
+
+    [=========================] 100.0%
+    mars orbital period: 1.8814888993859236 Earth years.
+    sun orbital period: NaN Earth years.
+    earth orbital period: 0.9941658779576588 Earth years.
+    jupiter orbital period: 11.842325722983256 Earth years.
+    venus orbital period: 0.6135302447283362 Earth years.
+    mercury orbital period: 0.24148598385194595 Earth years.
+
+    Planet alignments detected on frames: [0, 29027, 58143, 1141224, 1170298, 1199381, 1228491, 1257605, 1286731] for planets: ['earth', 'venus', 'mercury']
+    In Earth years: [0.0, 1.5905205479452056, 3.185917808219178, 62.53282191780822, 64.12591780821919, 65.71950684931507, 67.31457534246576, 68.90986301369863, 70.50580821917808]     
+
+method = Beeman
+file = exp3.json (old)
+threshold = 3 degrees
+Console output:
+    [=========================] 100.0%
+    mars orbital period: 1.8812347661785547 Earth years.
+    sun orbital period: NaN Earth years.
+    earth orbital period: 0.994055292652553 Earth years.
+    jupiter orbital period: 11.835360730593607 Earth years.
+    venus orbital period: 0.6134683700169309 Earth years.
+    mercury orbital period: 0.24145235719253683 Earth years.
+    saturn orbital period: 29.292639269406394 Earth years.
+    uranus orbital period: 82.96964383561644 Earth years.
+
+    Planet alignments detected on frames: [0, 29060, 1170339, 1199422, 1228523, 1257640] for planets: ['earth', 'venus', 'mercury']
+    In Earth years: [0.0, 1.5923287671232877, 64.12816438356164, 65.72175342465754, 67.31632876712328, 68.9117808219178]
+
+
+
+method = Beeman
+threshold = 3 degrees
+file = exp1-3.json
+Console output:
+    --- Orbits main ---
+
+    Input a command, or type 'help' for help with usage and to list available commands: main
+
+    [=========================] 100.0%
+    mars orbital period: 1.8811166745394425 Earth years.
+    sun orbital period: 0.000273972602739726 Earth years.
+    earth orbital period: 0.9938899128268992 Earth years.
+    jupiter orbital period: 11.835187611673614 Earth years.
+    venus orbital period: 0.613350676801756 Earth years.
+    mercury orbital period: 0.2414314769396423 Earth years.
+    saturn orbital period: 29.29150684931507 Earth years.
+    uranus orbital period: 82.94584474885845 Earth years.
+    neptune orbital period: 162.53534246575342 Earth years.
+
+    Planet alignments detected on frames: [0, 5810, 11630, 228240, 234059, 239872, 245698, 251519, 257350, 468132, 473951, 479764, 485587, 491411, 497235, 708025, 713844, 719658, 725479, 731305, 737126, 947919, 953737, 959553, 965373, 971200, 977024] for planets: ['earth', 'venus', 'mercury']
+    In Earth years: [0.0, 1.5917808219178082, 3.186301369863014, 62.53150684931507, 64.12575342465753, 65.71835616438356, 67.31452054794521, 68.90931506849316, 70.5068493150685, 128.25534246575342, 129.8495890410959, 131.44219178082193, 133.03753424657535, 134.6331506849315, 136.22876712328767, 193.9794520547945, 195.573698630137, 197.16657534246576, 198.7613698630137, 200.35753424657534, 201.95232876712328, 259.70383561643837, 261.2978082191781, 262.8912328767123, 264.48575342465756, 266.0821917808219, 267.6778082191781]

@@ -1,0 +1,35 @@
+{
+    "_comment": "Test file used to test the simulation.",
+    "timescale": 864000,
+    "n_frames": 50000,
+    "fps": 100.0, 
+    "axes_range": 8e11,
+    "G": 6.67e-11,
+    "radius_sf": 400,
+    "star_sf": 10,
+    "celestials": {
+        "mars": {
+            "position": [ 2.28e11, 0.0 ], 
+            "velocity": [ 0.0, 0.0 ],
+            "mass": 6.4185e23,
+            "radius": 3.39e6,
+            "colour": "sandybrown",
+            "orbits": "sun"
+        },
+        "sun": {
+            "position": [ 0.0, 0.0 ],
+            "velocity": [ 0.0, 0.0 ],
+            "mass": 1.99e30,
+            "radius": 6.96e8,
+            "colour": "orangered"
+        },
+        "earth": {
+            "position": [ 1.49e11, 0 ],
+            "velocity": [ 0.0, 0.0 ],
+            "mass": 6e24,
+            "radius": 6.37e6,
+            "colour": "cyan",
+            "orbits": "sun"
+        }
+    }
+}

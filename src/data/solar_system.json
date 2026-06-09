@@ -1,0 +1,86 @@
+{
+    "_comment": "A timescale 86400 represents a simulation day passing for each real time second.",
+    "timescale": 86400,
+    "n_frames": 40000,
+    "fps": 2.0, 
+    "axes_range": 5e12,
+    "G": 6.67e-11,
+    "radius_sf": 1000,
+    "star_sf": 50,
+    "celestials": {
+      "mars": {
+        "position": [ 2.28e11, 0.0 ], 
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 6.4185e23,
+        "radius": 3.39e6,
+        "colour": "sandybrown",
+        "orbits": "sun"
+      },
+      "sun": {
+        "position": [ 0.0, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 1.99e30,
+        "radius": 6.96e8,
+        "colour": "orangered"
+      },
+      "earth": {
+        "position": [ 1.49e11, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 6e24,
+        "radius": 6.37e6,
+        "colour": "cyan",
+        "orbits": "sun",
+        "alignment": true
+      },
+      "jupiter": {
+        "position": [ 7.785e+11, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 1.989e27,
+        "radius": 6.9911e7,
+        "colour": "wheat",
+        "orbits": "sun"
+      },
+      "venus": {
+        "position": [ 1.08e+11, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 4.867e24,
+        "radius": 6.052e6,
+        "colour": "orange",
+        "orbits": "sun",
+        "alignment": true
+      },
+      "mercury": {
+        "position": [ 5.8e+10, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 4.301e23,
+        "radius": 2.44e6,
+        "colour": "lightgrey",
+        "orbits": "sun",
+        "alignment": true
+      },
+      "saturn": {
+        "position": [ 1.43e12, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 5.68e26,
+        "radius": 5.82e7,
+        "colour": "yellow",
+        "orbits": "sun"
+      },
+      "uranus": {
+        "position": [ 2.87e+12, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 8.681e25,
+        "radius": 2.53e7,
+        "colour": "lightblue",
+        "orbits": "sun"
+      },
+      "neptune": {
+        "position": [ 4.5e+12, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 1.024e26,
+        "radius": 2.46e7,
+        "colour": "royalblue",
+        "orbits": "sun"
+      }
+    }
+  }

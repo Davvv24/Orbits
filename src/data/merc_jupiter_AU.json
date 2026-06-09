@@ -1,0 +1,62 @@
+
+{
+    "_comment": "This file makes use of astronomical units (AU) for distances, Earth days for time, and Earth masses for masses.", 
+    "_comment2": "G is measured in AU^3 * M_earth^-1 * days^-2",
+    "_comment3": "The calculated energies and velocities will not be scaled in the simulation.",
+    "timescale": 1.0,
+    "n_frames": 5000,
+    "fps": 10.0, 
+    "axes_range": 6.0,
+    "G": 8.8874e-10,
+    "radius_sf": 400.0,
+    "star_sf": 5.0,
+    "celestials": {
+      "mars": {
+        "position": [ 1.52, 0.0 ], 
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 0.107,
+        "radius": 1.13e-5,
+        "colour": "sandybrown",
+        "orbits": "sun"
+      },
+      "sun": {
+        "position": [ 0.0, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 333000,
+        "radius": 4.65e-2,
+        "colour": "orangered"
+      },
+      "earth": {
+        "position": [ 1.0, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 1.0,
+        "radius": 4.26e-5,
+        "colour": "cyan",
+        "orbits": "sun"
+      },
+      "jupiter": {
+        "position": [ 5.20, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 317.8,
+        "radius": 2.39e-4,
+        "colour": "wheat",
+        "orbits": "sun"
+      },
+      "venus": {
+        "position": [ 0.723, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 0.815,
+        "radius": 2.02e-5,
+        "colour": "orange",
+        "orbits": "sun"
+      },
+      "mercury": {
+        "position": [ 0.387, 0.0 ],
+        "velocity": [ 0.0, 0.0 ],
+        "mass": 0.0553,
+        "radius": 8.18e-6,
+        "colour": "lightgrey",
+        "orbits": "sun"
+      }
+    }
+  }
