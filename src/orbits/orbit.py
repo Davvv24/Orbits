@@ -87,7 +87,6 @@ class Simulation(object):
         self.ax = ax
         self.text = text
         self.prev_time = time.time()
-        self.celestials_map = self.celestials_map
         self.celestials = list(self.celestials_map.values())
         self.celestials_positions = [[c.position[:] for c in self.celestials]]
         self.prog_bar = ProgressBar()
@@ -114,7 +113,7 @@ class Simulation(object):
         """Returns the total potential energy in the system."""
         tot = 0
         for i, c1 in enumerate(self.celestials):
-            for c2 in self.celestials[i:]: # This avoids double counting
+            for c2 in self.celestials[i+1:]: # This avoids double counting
                 if c1 != c2:
                     tot += c1.getVE(c2)
         return tot
@@ -134,14 +133,7 @@ class Simulation(object):
         for name, c2 in self.celestials_map.items():
             if name!=origin_celestial_name and c2.check_alignment: # Can't check alignment with itself, or planets that shouldn't be considered
                 dist_vec = c2.position-c1.position
-                if dist_vec[0]==0: angle = np.pi/2 * (2*(dist_vec[1]>0)-1)  # pi/2 if y>0, -pi/2 if y<0, when x=0
-                elif dist_vec[1]==0: angle = np.pi * (dist_vec[0]<0)        # 0 if x>0, pi if x<0, when y=0
-                else: 
-                    angle = np.arctan(dist_vec[1]/dist_vec[0])    # Normal case
-                    if dist_vec[0]<0:                           # Left quadrants cases
-                        if dist_vec[1]>0:   angle += np.pi
-                        else:               angle -= np.pi
-                angles.append(angle)
+                angles.append(np.arctan2(dist_vec[1], dist_vec[0]))
 
         rad_thr = np.deg2rad(threshold)
         # Calculates range and if it less than the threshold, then planets are aligned. 
@@ -160,12 +152,14 @@ class Simulation(object):
         return n_frames*self.timescale/(86400*365*self.fps)
 
     """Numerical integration methods"""
+    @staticmethod
     def _euler_cromer(c1:Celestial, celestials:list[Celestial], dt:float)->None:
         a_vec = c1.getTotAcc(celestials)
         c1.velocity += dt*a_vec             # v(t+dt) = v(t) + a(t)dt
         c1.position += dt*c1.velocity       # r(t+dt) = r(t) + v(t+dt)dt
         c1.prev_acceleration = c1.acceleration
         c1.acceleration = a_vec
+    @staticmethod
     def _euler(c1:Celestial, celestials:list[Celestial], dt:float)->None:
         a_vec = c1.getTotAcc(celestials)
         c1.position += dt*c1.velocity       # r(t+dt) = r(t) + v(t)dt
@@ -173,12 +167,14 @@ class Simulation(object):
         c1.prev_acceleration = c1.acceleration
         c1.acceleration = a_vec
     # See Beeman integration (https://en.wikipedia.org/wiki/Beeman%27s_algorithm) for more info on algorithm used
+    @staticmethod
     def _beeman(c1:Celestial, celestials:list[Celestial], dt:float)->None:
         c1.position += (c1.velocity + (1/6)*(4*c1.acceleration - c1.prev_acceleration)*dt)*dt   # Predicted position
         a_vec = c1.getTotAcc(celestials)                                                        # Acceleration from new position
         c1.velocity += (1/6)*(2*a_vec + 5*c1.acceleration - c1.prev_acceleration)*dt            # Corrected velocity
         c1.prev_acceleration = c1.acceleration
         c1.acceleration = a_vec
+    @staticmethod
     def _verlet(c1:Celestial, celestials:list[Celestial], dt:float)->None:
         c1.position += (c1.velocity + 0.5*c1.acceleration*dt)*dt
         a_vec = c1.getTotAcc(celestials)
@@ -283,12 +279,13 @@ class Simulation(object):
         return [self.ax] # Returns the artist object to be updated (this is for performance reasons, and not in fact needed)
 
     """Setup helper functions"""
+    @staticmethod
     def addStars(ax:plt.Axes,axes_range:float,zorder:int=-1000)->None:
         """Adds aethstetic stars to a maplotlib Axes object."""
-        for _ in range(100):
-            arr = (np.random.random((100,2))*2-1)*axes_range                # Random star scattering
+        arr = (np.random.random((100,2))*2-1)*axes_range                # Random star scattering
         ax.scatter(arr[:,0],arr[:,1], c="#CCCCCC", s=0.1, zorder=zorder)    # Creates scatter plot of white dots
 
+    @staticmethod
     def loadCelestials(ax:plt.Axes, celestials_data:dict, radius_sf:float=1.0, star_sf:float=1.0, star_name:str="sun")->dict: 
         """Loads and returns a new list of celestial objects from a `celestials_data` JSON object, constructing each celestial from data.
         `radius_sf` and `star_sf` make the planets and star more visible, as their radii are scaled.
@@ -328,6 +325,7 @@ class Simulation(object):
                 celestials_map[name].setRelativeOrbit(parent_planet)
         return celestials_map
 
+    @staticmethod
     def createSimulationAxes(axes_range:float)->plt.Axes:
         """Returns a new ax object with required parameters for the simulation."""
         ax = plt.axes([0.0, 0.0, 1.0, 1.0], xlim=(-axes_range, axes_range), ylim=(-axes_range, axes_range)) # Creates plot axes that provide the canvas to the simulation
@@ -335,7 +333,8 @@ class Simulation(object):
         ax.xaxis.set_units("m")
         ax.yaxis.set_units("m")
         return ax
-    
+
+    @staticmethod
     def createSimulationText(ax:plt.Axes, axes_range:float)->plt.Text:
         """Returns matplotlib text object to display information about the simulation."""
         return ax.text(-0.9*axes_range,-0.9*axes_range, "KE at frame 0: loading\nfps: loading", fontsize=8)
@@ -436,7 +435,6 @@ def simSetup( # There are many possible parameters that can be used
                             sim_mode=Simulation.MODE_ACCURATE, 
                             store_data=True, #! This needs to be set to true if animating 
                             method=method,
-                            file_write=save_CSV, 
                             alignment=alignment_thr,
                             loading_bar=loading_bar) # Initialises simulation
 

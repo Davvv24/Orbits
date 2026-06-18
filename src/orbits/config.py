@@ -18,9 +18,7 @@ csv_out_path = results_dir / "results.csv"
 video_out_path = results_dir / "video.mp4"
 
 
-FRAME_INTERVAL = 30 # millisecond delay between animation frames (only used for saving videos)
 WIN_SIZE = 6 # size in inches on the actual display, so the size is not display dependent
-G_CONST = 6.67e-11 # not used in practice
 
 def test():
     print("Folder directory:\t", orbits_dir)

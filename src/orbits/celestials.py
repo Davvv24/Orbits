@@ -103,30 +103,31 @@ class Celestial(object):
             ax.add_patch(self.patch)
 
 
+    @staticmethod
     def resetPatch(c1:Celestial, ax:plt.Axes)->None:
         """Function that resets/updates a patch by creating a new instance with updated parameters, and deleting the previous one"""
         c1.patch = plt.Circle(c1.position, c1.radius, color=c1.colour, zorder=-1000)
         ax.add_patch(c1.patch)
 
-
+    @staticmethod
     def setRelativeOrbit(c1:Celestial, c2:Celestial, clockwise=False)->None:
         """Given another celestial object, it sets its own motion to a relative orbit to that celestial.
         """
-        distance_vec = c2.position - c1.position 
+        distance_vec = c2.position - c1.position
         # Rotates distance_vec by 90 degrees to simplify calculations, then is mirrored according to the rotation
-        distance_vec = np.array((-distance_vec[1], distance_vec[0]))*(clockwise*2-1) 
+        distance_vec = np.array((-distance_vec[1], distance_vec[0]))*(clockwise*2-1)
         distance = np.linalg.norm(distance_vec)
         v = np.sqrt(c1.g*c2.mass*(distance**-3)) * distance_vec    # v = sqrt(GM/|r|^-3) * r, equation for orbital velocity where: r = distance_vec
         c1.velocity += v                                           # Adds relative velocity to account for movement of other celestial
-        c1.acceleration = c1.getGravAcc(c2)                     # Sets initial acceleration to account for gravitational pull
-        c1.previous_acceleration = c1.acceleration[:]           # Required for Beeman algorithm
+        c1.acceleration = c1.getGravAcc(c2)                        # Sets initial acceleration to account for gravitational pull
+        c1.prev_acceleration = c1.acceleration[:]                  # Required for Beeman algorithm
 
-
+    @staticmethod
     def getKE(c1:Celestial)->float: # returns 1/2 * mv^2 = 0.5 * mass * v.v
         """Returns the kinetic energy (in Joules) of this celestial object."""
-        return 0.5 * c1.mass * c1.velocity.dot(c1.velocity) 
+        return 0.5 * c1.mass * c1.velocity.dot(c1.velocity)
 
-
+    @staticmethod
     def getVE(c1:Celestial, c2:Celestial)->float:
         """Returns the potential energy (in Joules) relative to celestial object."""
         distance_vec = c2.position - c1.position    # distance vector across 2 planets (r-vector)
@@ -134,8 +135,8 @@ class Celestial(object):
         m1, m2 = c1.mass, c2.mass
         potential_energy = c1.g * (distance**-1) * m1 * m2
         return -potential_energy
-    
 
+    @staticmethod
     def getGravAcc(c1:Celestial, c2:Celestial)->np.ndarray:
         """Returns a vector corresponding to the acceleration experienced by a celestial `c1`
         due to another celestial `c2`"""
@@ -143,7 +144,7 @@ class Celestial(object):
         distance = np.linalg.norm(distance_vec)                     # distance value
         return c1.g * c2.mass * (distance**-3) * distance_vec    # a = GM r^-3 * r-vector
 
-
+    @staticmethod
     def getTotAcc(c1:Celestial, celestials:list[Celestial])->np.ndarray:
         """Returns the net acceleration vector acting on a celestial `c1`."""
         a_vec = np.zeros(2)
