@@ -1,7 +1,10 @@
 # Planet Orbit Simulator
+1. `pip install orbitz`
+2. `python -m orbits`
+3. `run`
 
 ## Overview
-This is a planetary orbits simulator designed to simulate the orbits of planets in our Solar system. The project is built in Python, using Numpy and MatplotLib for computations and rendering. 
+This is a planetary orbits simulator designed to simulate the orbits of planets in our Solar system. The project is built in Python, using Numpy and MatplotLib for computations and rendering. The package comes prebuilt and available to use through a CLI.
 
 ![Orbits Image](orbits.png)
 
@@ -12,22 +15,16 @@ This is a planetary orbits simulator designed to simulate the orbits of planets 
 - Store and analyse data from CSV files across different simulations.
 
 ## Requirements
-Requires Python 3.10 or greater. Uses MatplotLib and NumPy
+Requires Python 3.10 or greater. Uses MatplotLib and NumPy.
 
 ##  Installation
-1. Extract files containing the project
-2. "cd" into the project directory containing this file.
-3. To install the orbits module, run: `pip install -e .`.
-4. To uninstall, run: `pip uninstall orbits`.
+1. `pip install orbitz`
 
 ## Usage
-1. "cd" into the project directory containing this file.
-2. Type `python -m orbits` into the command line to run the orbits package.
-3. Alternatively, run the `run.py` file by typing `python run.py`.
-4. This will load the command line interface to edit the configurations of the simulation.
-5. Type "help" to get a list of commands, or type "run" to run the simulation with default values.
-6. Wait for the loading bar to reach 100%, then a window will appear, displaying the simulation.
-
+1. `python -m orbits` to load the CLI
+2. Alternatively, `cd` into the relevant directory and run the `run.py` with `python run.py`.
+3. Type `help` to get a list of commands, or `run` to run the simulation with default values.
+4. Wait for the loading bar to reach 100%, then a window will appear, displaying the simulation.
 
 ## Project Structure
 Orbits/\
